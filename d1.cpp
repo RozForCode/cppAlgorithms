@@ -25,3 +25,18 @@ How I'll do them
 // arr.push(result);
 // so the origin of sliding window is to avoid repeative work by sliding the window like keeping 2+3+4... and removing/shifting/adding/subtracting only in the front and the end
 // this makes our code efficient
+
+/* now lets focus on how to identify what problem is sliding window and what are it's types
+ now after learning sliding window- ofcourse we'll be able to solve such  problems but understanding it will
+ also help us in dealing with probs that are not sliding window
+ 1. We'll have a array or similar DS(string etc) where we'll apply our window
+ 2. Question will make use work on subarrays and not something that is discontinous + added to it they might ask largest, smallest or something similar
+ since it's window we'll also have a constant K which will be our window size
+ sometimes we'll have to get the window size but above terms will be mentioned in the question
+ now if we don't have window size how will we deal with the prob. This leads us to the two types of sliding window
+1. Fixed size window - eg. sum
+2. Variable size window - ask about window size
+- largest or smallest window based on condition
+eg - we are given sum and we need to get subarrys for that sum and then get the largest or smallest from the result subarrays
+
+*/

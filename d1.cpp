@@ -38,5 +38,5 @@ How I'll do them
 2. Variable size window - ask about window size
 - largest or smallest window based on condition
 eg - we are given sum and we need to get subarrys for that sum and then get the largest or smallest from the result subarrays
-
+we might have to use map, list etc together with the algo to get the result
 */

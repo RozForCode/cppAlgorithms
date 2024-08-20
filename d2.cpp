@@ -18,7 +18,7 @@
 #include <vector>
 #include <climits>
 using namespace std;
-int answer(const vector<int> arr, int K)
+int answer1(const vector<int> arr, int K)
 {
     int n = arr.size();
 
@@ -36,6 +36,80 @@ int answer(const vector<int> arr, int K)
     for (int i = K; i < n; i++)
     {
         windowsum += arr[i] - arr[K - i];
+        maxSum = max(maxSum, windowsum);
+    }
+    return maxSum;
+}
+
+// using two pointers and one loop
+int answer2(const vector<int> arr, int K)
+{
+    int n = arr.size();
+
+    int maxSum = INT_MIN;
+    int windowsum = 0;
+    for (int i = 0, j = 0; j < n;)
+    {
+        if ((j - i + 1) < K)
+        {
+            windowsum += arr[j];
+            j++;
+        }
+        else if ((j - i + 1) == K)
+        {
+            windowsum += arr[j] - arr[i];
+            j++;
+            i++;
+        }
+        else
+        {
+            i++;
+        }
+        maxSum = max(maxSum, windowsum);
+    }
+    return maxSum;
+}
+// answer 2 revised
+int answer3(const vector<int> arr, int K)
+{
+    int n = arr.size();
+
+    int maxSum = INT_MIN;
+    int windowsum = 0;
+    for (int i = 0, j = 0; j < n;)
+    {
+        for (j; j < K; j++)
+        {
+            windowsum += arr[j];
+        }
+        maxSum = windowsum;
+        if (j < n + 1)
+        {
+            j++;
+            windowsum += arr[j] - arr[i];
+            i++;
+            maxSum = max(maxSum, windowsum);
+        }
+    }
+    return maxSum;
+}
+// answer 2 remade
+int answer3(const vector<int> arr, int K)
+{
+    int n = arr.size();
+
+    int windowsum = 0;
+    for (int j = 0; j < K; j++)
+    {
+        windowsum += arr[j];
+    }
+    int maxSum = windowsum;
+
+    for (int i = 0, j; j < n; j++, i++)
+    {
+
+        windowsum += arr[j] - arr[i];
+
         maxSum = max(maxSum, windowsum);
     }
     return maxSum;

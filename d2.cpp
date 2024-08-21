@@ -114,3 +114,22 @@ int answer3(const vector<int> arr, int K)
     }
     return maxSum;
 }
+
+// max subarray revision
+int answer4(const vector<int> arr, int K)
+{
+    int n = arr.size();
+    int windowSum = 0;
+    for (int i = 0; i < K; i++)
+    {
+        windowSum += arr[i];
+    }
+    int maxSum = windowSum;
+    for (int i = K; i < n; i++)
+    {
+        windowSum += arr[i] - arr[i - K];
+        maxSum = max(maxSum, windowSum);
+    }
+    return maxSum;
+}
+// so next day revision I intinctly did one variable 2 loop solution

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <climits>
 #include <string.h>
+#include <unordered_map>
 using namespace std;
 
 // mix of brute force and sliding window
@@ -38,3 +39,11 @@ int answer(string s, string ptr)
 }
 
 // sliding window - this problem requires a smart and efficient way to deal with anagrams.. implementing the sliding window itself is easy.
+// need to make a map and implement a way as to not traverse that map again and again.
+
+int countAnagrams(const string &s, const string &ptr)
+{
+    int ans;
+    unordered_map<char, int> map;
+    return ans;
+}

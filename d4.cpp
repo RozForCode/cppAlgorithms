@@ -43,7 +43,56 @@ int answer(string s, string ptr)
 
 int countAnagrams(const string &s, const string &ptr)
 {
-    int ans;
+    int ans = 0;
     unordered_map<char, int> map;
+    int n = s.size();
+    int k = (ptr.size());
+    int count = 0;
+
+    for (char c : ptr)
+    {
+        map[c]++;
+    }
+
+    for (int i = 0; i < k; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            map[s[i]]--;
+            if (map[s[i]] == 0)
+            {
+                count++;
+            }
+        }
+    }
+    if (count == map.size())
+    {
+        ans++;
+    }
+    for (int i = k; i < n; i++)
+    {
+
+        if (map.find(s[i - k]) != map.end())
+        {
+            map[s[i - k]]++;
+            if (map[s[i - k]] == 1)
+            {
+                count--;
+            }
+        }
+        if (map.find(s[i]) != map.end())
+        {
+            map[s[i]]--;
+            if (map[s[i]] == 0)
+            {
+                count++;
+            }
+        }
+        if (count == map.size())
+        {
+            ans++;
+        }
+    }
+
     return ans;
 }

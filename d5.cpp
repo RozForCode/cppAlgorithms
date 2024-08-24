@@ -1,22 +1,29 @@
 // maximum of all subarrays of size K
 #include <vector>
 #include <iostream>
-#include <climits>
+#include <deque>
 using namespace std;
 
 vector<int> maxOfSubArrays(const vector<int> arr, int k)
 {
     int n = arr.size();
-    vector<int> maximums;
-    int subArraymax = INT_MIN;
-    for (int i = 0; i < k; i++)
+    vector<int> result;
+    deque<int> maximums;
+    for (int i = 0; i < n; i++)
     {
-        subArraymax = max(subArraymax, arr[i]);
+        if (!maximums.empty() && maximums.front() == i - k)
+        {
+            maximums.pop_front();
+        }
+        if (!maximums.empty() && arr[maximums.back()] <= arr[i])
+        {
+            maximums.pop_back();
+        }
+        maximums.push_back(i);
+        if (i >= k - 1)
+        {
+            result.push_back(arr[maximums.front()]);
+        }
     }
-    maximums.push_back(subArraymax);
-
-    for (int i = k; i < n; i++)
-    {
-    }
-    return maximums;
+    return result;
 }

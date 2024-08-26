@@ -96,3 +96,43 @@ int countAnagrams(const string &s, const string &ptr)
 
     return ans;
 }
+
+// revision
+int revision(string s, string ptr)
+{
+    int ans;
+    int count = 0;
+    int k = ptr.length();
+    unordered_map<char, int> map;
+    for (char c : ptr)
+    {
+        map[c]++;
+    }
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (count == map.size())
+        {
+            ans++;
+        }
+        if (map.find(s[i]) != map.end())
+        {
+            map[s[i]]--;
+            if (map[s[i]] == 0)
+            {
+                count++;
+            }
+        }
+        if (i >= k)
+        {
+            if (map.find(s[i - k]) != map.end())
+            {
+                map[s[i - k]]++;
+                if (map[s[i - k]] != 0)
+                {
+                    count--;
+                }
+            }
+        }
+    }
+    return ans;
+}

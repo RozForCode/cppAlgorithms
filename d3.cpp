@@ -97,3 +97,39 @@ vector<int> revision(const vector<int> arr, int k)
     }
     return result;
 }
+
+// to correct implement we need to do first window in separate loop
+vector<int> revision1(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    vector<int> negatives;
+    vector<int> result;
+
+    for (int i = 0; i < k; i++)
+    {
+        if (arr[i] < 0)
+        {
+            negatives.push_back(arr[i]);
+        }
+    }
+    for (int i = k; i < n; i++)
+    {
+        if (negatives.size() == 0)
+        {
+            result.push_back(0);
+        }
+        else
+        {
+            result.push_back(negatives.front());
+        }
+        if (arr[i] < 0)
+        {
+            negatives.push_back(arr[i]);
+        }
+        if (arr[i - k] < 0)
+        {
+            negatives.erase(negatives.begin());
+        }
+    }
+    return result;
+}

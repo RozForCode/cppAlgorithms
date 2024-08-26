@@ -76,3 +76,24 @@ vector<int> answer(const vector<int> arr, int k)
     }
     return result;
 }
+
+// incorrect - doesn't tkae care of window without negative
+vector<int> revision(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    vector<int> negatives;
+    vector<int> result;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] < 0)
+        {
+            negatives.push_back(arr[i]);
+        }
+    }
+    for (int i = 0; i < n - k + 1; i++)
+    {
+        result.push_back(negatives[i]);
+    }
+    return result;
+}

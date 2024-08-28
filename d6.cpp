@@ -14,25 +14,53 @@ int variable(vector<int> arr, int k)
 
     for (int i = 0; i < n; i++)
     {
+        sum += arr[i];
         if (sum == k)
         {
             maxLength = max(maxLength, currentWindow);
-            sum += arr[i] - arr[i - currentWindow];
         }
-        else
+
+        if (sum > k)
         {
-            if (sum > k)
-            {
-                sum = arr[i];
-            }
-            if (sum < k)
-            {
-                sum += arr[i];
-                currentWindow++;
-            }
+            sum = arr[i];
+        }
+        if (sum < k)
+        {
+            sum += arr[i];
+            currentWindow++;
         }
     }
     return maxLength;
 }
 
 // gpt reviewed
+// currentWindow is not the size of the window but the starting index of the window
+// sum>k is not handled properly
+int variable1(vector<int> arr, int k)
+{
+    int n = arr.size();
+    int sum = INT_MIN;
+    int currentWindow;
+    int maxLength = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        if (sum == k)
+        {
+            maxLength = max(maxLength, i + 1 - currentWindow);
+        }
+
+        if (sum > k)
+        {
+            sum - arr[currentWindow];
+            currentWindow--;
+        }
+        if (sum < k)
+        {
+            sum += arr[i];
+            currentWindow++;
+        }
+    }
+    return maxLength;
+}

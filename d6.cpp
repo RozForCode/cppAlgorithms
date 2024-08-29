@@ -90,3 +90,27 @@ int variable2(vector<int> arr, int k)
     return maxLength;
 }
 // second review code is now perfect
+
+// revision
+int revision1(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    int sum = 0;
+    int currentWindowIndex = 0;
+    int maxWindow = INT_MIN;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        if (sum > k && currentWindowIndex <= i)
+        {
+            sum -= arr[currentWindowIndex];
+            currentWindowIndex++;
+        }
+        if (sum == k)
+        {
+            maxWindow = max(maxWindow, i - currentWindowIndex + 1);
+        }
+    }
+    return maxWindow;
+}

@@ -64,3 +64,5 @@ int intialanswer(string s)
     }
     return maxLength;
 }
+
+// longest substring with K unique numbers

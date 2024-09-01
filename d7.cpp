@@ -65,4 +65,22 @@ int intialanswer(string s)
     return maxLength;
 }
 
-// longest substring with K unique numbers
+// longest substring with K unique characters
+int answer1(string s, int k)
+{
+    int n = s.length();
+    unordered_map<char, int> map;
+    int maxSubstring = 0;
+    int currentWindowIndex = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            maxSubstring = max(maxSubstring, i - currentWindowIndex + 1);
+            currentWindowIndex = max(currentWindowIndex, 1 + map[s[i]]);
+        }
+        map[s[i]] = i;
+    }
+    return maxSubstring;
+}

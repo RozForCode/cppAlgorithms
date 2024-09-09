@@ -42,9 +42,10 @@ int answer1(string s, string t)
 // gpt reviewed
 // size after auto loop will be equal to t.length()-1
 
-int answer1(string s, string t)
+int answer2(string s, string t)
 {
     unordered_map<char, int> map;
+    unordered_map<char, int> windowMap;
     int n = s.length();
     int currentWindowIndex = 0;
     int minLength = INT_MAX;
@@ -64,8 +65,8 @@ int answer1(string s, string t)
 
         if (map.find(c) != map.end())
         {
-            map[c]--;
-            if (map[c] == 0)
+            windowMap[c]++;
+            if (map[c] == windowMap[c])
             {
                 formed++;
             }
@@ -78,5 +79,23 @@ int answer1(string s, string t)
         // }
         // okay told gpt that it was wrong here and it should be a while loop till we find a relevant letter
         // also in case when the substring is in the latter section of the string this approach won't work with a while loop inside
+        while (formed == required)
+        {
+            minLength = min(minLength, r - currentWindowIndex + 1);
+            char leftChar = s[currentWindowIndex];
+            if (map.find(leftChar) != map.end())
+            {
+                windowMap[leftChar]--;
+                if (windowMap[leftChar] < map[leftChar])
+                {
+                    formed--;
+                }
+            }
+            currentWindowIndex;
+        }
     }
+    return minLength;
 }
+
+// asked gpt to check this one works
+// yiippppiii

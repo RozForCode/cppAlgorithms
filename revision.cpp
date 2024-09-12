@@ -133,3 +133,18 @@ vector<int> answer3(string s, string p)
 // had to make some changes to this solution and cleared the leetcode q // handling of formed and result is a bit wrong rest all good
 
 // maximum of all subarrays of size k
+
+// day 6-9 - variable sliding window
+// q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k
+
+// q7 -  Longest substring with non-repeating characters
+// q8 start
+// pick toys
+// john goes to mall with his mother and sees a rack of toys
+// mom gives him conditions - 1.toys picked should be continous in the rack
+// 2. He can pick 2 type of toys - toys should belong to maximum 2 types
+// john wants maximum no.of toys from the given rack
+// so variable size sliding window
+// IP - string where a letter represents a type of toy
+// q8 end
+// q9 - minimum window substring - shortest window that has all the character in second parameter string

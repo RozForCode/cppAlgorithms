@@ -253,3 +253,6 @@ int q9(string s, string p)
     }
     return maxLength;
 }
+
+// next revision after a week
+// and from then on after two weeks

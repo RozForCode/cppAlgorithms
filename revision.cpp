@@ -252,7 +252,7 @@ int q9(string s, string p)
         }
     }
     return maxLength;
-}
+} // wow I actually solved this intuitively - last time with help of gpt and two map variables this time on my own with only one map
 
 // next revision after a week
 // and from then on after two weeks

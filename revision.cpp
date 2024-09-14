@@ -148,3 +148,108 @@ vector<int> answer3(string s, string p)
 // IP - string where a letter represents a type of toy
 // q8 end
 // q9 - minimum window substring - shortest window that has all the character in second parameter string
+
+int q6(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    int currentWindowIndex = 0;
+    int sum = 0;
+    int maxLength = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        if (sum == k)
+        {
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+        }
+        while (sum > k)
+        {
+            sum -= arr[currentWindowIndex];
+            currentWindowIndex++;
+        }
+    }
+    return maxLength;
+}
+
+int q7(string s)
+{
+    int n = s.length();
+    int maxLength = 0;
+    int currentWindowIndex = 0;
+    unordered_map<char, int> map;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+            currentWindowIndex = map[s[i]] + 1;
+            map[s[i]] = i;
+        }
+        map[s[i]] = i;
+    }
+    return maxLength;
+}
+
+int q8(string s)
+{
+    int n = s.length();
+    int currentWindowIndex = 0;
+    int maxToys = 0;
+    unordered_map<char, int> map;
+
+    for (int i = 0; i < n; i++)
+    {
+        map[s[i]] = i;
+        if (map.size() > 2)
+        {
+            char toyToRemove;
+            for (auto &p : map)
+            {
+                int minIndex = n;
+                if (p.second < minIndex)
+                {
+                    minIndex = p.second;
+                    toyToRemove = p.first;
+                }
+            }
+            currentWindowIndex = map[toyToRemove] + 1;
+            map.erase(toyToRemove);
+        }
+        maxToys = max(maxToys, i - currentWindowIndex + 1);
+    }
+    return maxToys;
+}
+
+// lets fo it later.
+int q9(string s, string p)
+{
+    int n = s.length();
+    int k = p.length();
+    int maxLength = 0;
+    unordered_map<char, int> map;
+    int currentWindowIndex = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        map[s[i]] = i;
+        if (map.size() == k)
+        {
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+            int minIndex = n;
+            char tobeErased;
+            for (auto &p : map)
+            {
+                if (p.second < minIndex)
+                {
+                    minIndex = p.second;
+                    tobeErased = p.first;
+                }
+            }
+            currentWindowIndex = minIndex + 1;
+            map.erase(tobeErased);
+        }
+    }
+    return maxLength;
+}

@@ -66,8 +66,8 @@ int answer2(string s)
             }
             map.erase(toyToRemove);
             currentWindowIndex = minIndex + 1;
+            maxToys = max(maxToys, i - currentWindowIndex + 1);
         }
-        maxToys = max(maxToys, i - currentWindowIndex + 1);
     }
     return maxToys;
 }

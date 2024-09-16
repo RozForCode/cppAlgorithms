@@ -6,3 +6,10 @@
 // pop top push
 // all heap questions are sorting questions - nlogk
 // heap make sorting complexity from nlogn (array) to nlogk
+// max heap cpp - priority_queue<int> max;
+// min heap cpp - priority_queue<int,vector<int>, greater<int>> max;
+// if the heap requires there to be pair in each insertion than replace
+// all int occurences with pair<int,int>
+// if in some case there is need of inserting a int with a pair you'll need pair<int,pair<int,int>>
+// in such case it is better to define type
+// type def pair<int,pair<int,int>> ppi;// this code line comes after include statements

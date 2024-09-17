@@ -13,3 +13,27 @@
 // if in some case there is need of inserting a int with a pair you'll need pair<int,pair<int,int>>
 // in such case it is better to define type
 // type def pair<int,pair<int,int>> ppi;// this code line comes after include statements
+
+// q1 - kth smallest element
+#include <iostream>
+#include <queue>
+using namespace std;
+
+// int answer1(int[] arr, int n, int k)
+// {
+//     // int n = arr.size(); C-style arrays don't have inbuilt function to get the size of the array
+// }
+int answer1(int arr[], int n, int k)
+{
+    priority_queue<int> max;
+
+    for (int i = 0; i < n; i++)
+    {
+        max.push(arr[i]);
+        if (max.size() > k)
+        {
+            max.pop();
+        }
+    }
+    return max.top();
+}

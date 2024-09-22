@@ -474,9 +474,9 @@ int rev9(string s, string p)
     int k = p.length();
     unordered_map<char, int> map;
     int currentWindowIndex = 0;
-    int minLength = 0;
+    int minLength = INT_MAX;
 
-    for (auto c : s)
+    for (auto c : p)
     {
         map[c]++;
     }
@@ -487,17 +487,17 @@ int rev9(string s, string p)
     {
         if (map.find(s[i]) == map.end())
         {
+            map[s[i]]--;
             if (map[s[i]] == 0)
             {
                 count--;
             }
         }
-        if (count == 0)
-        {
-            minLength = min(minLength, i - currentWindowIndex + 1);
-        }
+
         while (count == 0)
         {
+            minLength = min(minLength, i - currentWindowIndex + 1);
+
             if (map.find(s[currentWindowIndex]) != map.end())
             {
                 map[currentWindowIndex]++;

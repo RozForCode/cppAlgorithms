@@ -379,3 +379,135 @@ int rev4(const vector<int> arr, int k)
 }
 
 // q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k
+
+int rev6(const vector<int> arr, int sum)
+{
+    int n = arr.size();
+    int ourSum = 0;
+    int maxLength = 0;
+    int currentWindowIndex = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        ourSum += arr[i];
+        if (ourSum == sum)
+        {
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+            ourSum -= arr[currentWindowIndex];
+            currentWindowIndex++;
+        }
+        while (ourSum > sum)
+        {
+            ourSum -= arr[currentWindowIndex];
+            currentWindowIndex++;
+        }
+    }
+    return maxLength;
+}
+
+// q7 -  Longest substring with non-repeating characters
+
+int rev7(string &s)
+{
+    int n = s.length();
+    int maxLength = 0;
+    int currentWindowIndex = 0;
+    unordered_map<char, int> map;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            // update maxlength, currentWindowIndex
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+            currentWindowIndex = map[s[i]] + 1;
+        }
+        map[s[i]] = i;
+    }
+    return maxLength;
+}
+
+// q8 start
+// pick toys
+// john goes to mall with his mother and sees a rack of toys
+// mom gives him conditions - 1.toys picked should be continous in the rack
+// 2. He can pick 2 type of toys - toys should belong to maximum 2 types
+// john wants maximum no.of toys from the given rack
+// so variable size sliding window
+// IP - string where a letter represents a type of toy
+// q8 end
+
+int rev8(string &s)
+{
+    unordered_map<char, int> map;
+    int n = s.length();
+    int maxLength = 0;
+    int currentWindowIndex = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (map.size() == 2 && map.find(s[i]) == map.end())
+        {
+            // update currentWindowIndex to 1+last occurence of map pair with smallest int value, update maxLength
+            maxLength = max(maxLength, i - currentWindowIndex + 1);
+            int minIndex = INT_MAX;
+            for (auto pair : map)
+            {
+                if (pair.second < minIndex)
+                {
+                    minIndex = pair.second;
+                }
+            }
+            map.erase(s[minIndex]);
+            currentWindowIndex = minIndex + 1;
+        }
+        map[s[i]] = i;
+    }
+    return maxLength;
+}
+
+// q9 - minimum window substring - shortest window that has all the character in second parameter string
+
+int rev9(string s, string p)
+{
+    int n = s.length();
+    int k = p.length();
+    unordered_map<char, int> map;
+    int currentWindowIndex = 0;
+    int minLength = 0;
+
+    for (auto c : s)
+    {
+        map[c]++;
+    }
+
+    int count = map.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(s[i]) == map.end())
+        {
+            if (map[s[i]] == 0)
+            {
+                count--;
+            }
+        }
+        if (count == 0)
+        {
+            minLength = min(minLength, i - currentWindowIndex + 1);
+        }
+        while (count == 0)
+        {
+            if (map.find(s[currentWindowIndex]) != map.end())
+            {
+                map[currentWindowIndex]++;
+                if (map[currentWindowIndex] == 1)
+                {
+                    count++;
+                }
+            }
+            currentWindowIndex++;
+        }
+    }
+    return minLength;
+}

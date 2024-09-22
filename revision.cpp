@@ -3,8 +3,8 @@
 /*
 // Q1- Maximum sum subarray of size K
 // First negative number in window of size K
-// count occurences of anagrams
-// maximum of all subarrays of size K
+// q3 count occurences of anagrams
+// q4 maximum of all subarrays of size K
 */
 
 #include <iostream>
@@ -257,3 +257,125 @@ int q9(string s, string p)
 // wow I actually solved this intuitively - last time with help of gpt and two map variables this time on my own with only one map
 // next revision after a week
 // and from then on after two weeks
+
+// Q1- Maximum sum subarray of size K
+int rev1(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    int maxValue = INT_MIN;
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        if (i >= k - 1)
+        {
+            maxValue = max(maxValue, sum);
+            sum -= arr[i - k];
+        }
+    }
+    return maxValue;
+}
+
+// First negative number in window of size K
+// deque is the best LIFO ds, it is altered implementation of stack
+// front() , pop_front(), push_back();
+// it's useless to store actual value in the deque as we have access to the array in the entirety of the code
+// pushing indexes into  the queue is better and gives us more flexibility
+vector<int> rev2(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    vector<int> result;
+    deque<int> que;
+    int i = 0;
+    for (; i < k; i++)
+    {
+        if (arr[i] < 0)
+        {
+            que.push_back(i);
+        }
+    }
+    for (; i < n; i++)
+    {
+        if (arr[i] < 0)
+        {
+            que.push_back(i);
+        }
+        if (que.size() == 0)
+        {
+            result.push_back(0);
+        }
+        else
+        {
+            result.push_back(arr[que.front()]);
+        }
+        if (i >= k && !que.empty() && que.front() < i - k + 1)
+        {
+            que.pop_front();
+        }
+    }
+    return result;
+}
+
+// q3 count occurences of anagrams
+int rev3(string s, string p)
+{
+    int n = s.length();
+    unordered_map<char, int> map;
+    int k = p.length();
+    int count = 0;
+    int answer;
+    for (auto c : s)
+    {
+        map[c]++;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            map[s[i]]--;
+            if (map[s[i]] == 0)
+            {
+                count++;
+            }
+        }
+        if (count == map.size())
+        {
+            answer++;
+        }
+        if (i >= k)
+        {
+            if (map.find(s[i - k]) != map.end())
+            {
+                map[s[i - k]]++;
+                if (map[s[i - k]] == 1)
+                {
+                    count--;
+                }
+            }
+        }
+    }
+    return answer;
+}
+
+// q4 maximum of all subarrays of size K
+
+int rev4(const vector<int> arr, int k)
+{
+    int n = arr.size();
+    int sum = 0;
+
+    for (int i = 0; i < k; i++)
+    {
+        sum += arr[i];
+    }
+    int maxValue = sum;
+    for (int i = k; i < n; i++)
+    {
+
+        sum += arr[i] - arr[i - k];
+        maxValue = max(maxValue, sum);
+    }
+    return maxValue;
+}
+
+// q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k

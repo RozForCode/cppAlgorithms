@@ -1,4 +1,4 @@
-// q4- K closed numbers
+// q4- K closest numbers to a given value
 // which heap to us - how to do the sorting
 // to solve we need to put in heap pair - key(absolute difference of given number) and the index of the key in the original
 // arr to return the result

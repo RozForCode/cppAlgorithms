@@ -126,3 +126,60 @@ for(int i=0;i<n;i++){
 actual answer gpt - using sliding window and hash map
 
 */
+// 36
+
+// 1,-1,1,-54,53,0,0,37
+
+// hashmap solution with full understanding !!!
+/*
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+
+using namespace std;
+
+int longestSubarrayWithSum(vector<int>& nums, int targetSum) {
+    unordered_map<int, int> prefixSumMap;
+    int currentSum = 0;
+    int maxLength = 0;
+
+    for (int i = 0; i < nums.size(); ++i) {
+        // Add the current element to the cumulative sum
+        currentSum += nums[i];
+
+        // Check if the current cumulative sum is equal to targetSum
+        if (currentSum == targetSum) {
+            maxLength = i + 1;  // Whole subarray [0...i] gives the sum
+        }
+
+        // Check if (currentSum - targetSum) is in the map
+        // This means there's a subarray ending at index i with the targetSum
+        if (prefixSumMap.find(currentSum - targetSum) != prefixSumMap.end()) {
+            int length = i - prefixSumMap[currentSum - targetSum];
+            maxLength = max(maxLength, length);
+        }
+
+        // Add currentSum to the map if it's not already there
+        // We want to store the first occurrence of each sum to maximize the subarray length
+        if (prefixSumMap.find(currentSum) == prefixSumMap.end()) {// just remove this if for smallest subarray for give sum
+            prefixSumMap[currentSum] = i;
+        }
+    }
+
+    return maxLength;
+}
+
+int main() {
+    vector<int> nums = {1, -1, 5, -2, 3};
+    int targetSum = 3;
+    int result = longestSubarrayWithSum(nums, targetSum);
+    cout << "Length of the longest subarray: " << result << endl;
+    return 0;
+}
+
+*/
+/*
+why hashmap might be better than sliding window for solving the question
+hashmap - works efficiently with both negatives and postives
+sliding window - might not work with negatives
+*/

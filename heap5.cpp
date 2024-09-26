@@ -7,6 +7,7 @@ using namespace std;
 
 // first answer without watching idea video or gpt
 priority_queue<pair<int, int>, vector<pair<int, int>>, greater<int>> q5(vector<int> arr, int k)
+// return type to make answer simpler
 {
     int n = arr.size();
     unordered_map<int, int> map;

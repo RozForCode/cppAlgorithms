@@ -24,7 +24,7 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, greater<int>> q5(vector<i
         {
             queue.pop();
         }
-    }
+        }
     return queue;
 }
 

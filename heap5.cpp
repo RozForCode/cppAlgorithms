@@ -6,26 +6,31 @@
 using namespace std;
 
 // first answer without watching idea video or gpt
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<int>> q5(vector<int> arr, int k)
-// return type to make answer simpler
+vector<int> q5(vector<int> arr, int k)
 {
     int n = arr.size();
     unordered_map<int, int> map;
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<int>> queue;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue;
 
     for (int i = 0; i < n; i++)
     {
-        map[i]++;
+        map[arr[i]]++;
     }
     for (auto c : map)
     {
-        queue.push(make_pair(c.first, c.second));
+        queue.push({c.first, c.second});
         if (queue.size() > k)
         {
             queue.pop();
         }
-        }
-    return queue;
+    }
+    vector<int> result;
+    while (!queue.empty())
+    {
+        result.push_back((queue.top()).first);
+        queue.pop();
+    }
+    return result;
 }
 
-// after watching video and gpt reviewed
+// time complexity O(n logK)

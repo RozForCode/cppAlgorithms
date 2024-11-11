@@ -511,3 +511,23 @@ int rev9(string s, string p)
     }
     return minLength;
 }
+
+// restarting revision
+// Q1- Maximum sum subarray of size K
+// Q2 return collection of First negative number in window of size K
+// q3 count occurences of anagrams
+// q4 maximum of all subarrays of size K
+// q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k
+
+// q7 -  Longest substring with non-repeating characters
+
+// q8 start
+// pick toys
+// john goes to mall with his mother and sees a rack of toys
+// mom gives him conditions - 1.toys picked should be continous in the rack
+// 2. He can pick 2 type of toys - toys should belong to maximum 2 types
+// john wants maximum no.of toys from the given rack
+// so variable size sliding window
+// IP - string where a letter represents a type of toy
+// q8 end
+// q9 - minimum window substring - shortest window that has all the character in second parameter string

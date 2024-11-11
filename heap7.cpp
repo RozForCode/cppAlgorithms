@@ -1,4 +1,4 @@
-// Frequency sort
+// q6 Frequency sort
 
 /*
 Problem Statement: Frequency Sort (Heap Problem)

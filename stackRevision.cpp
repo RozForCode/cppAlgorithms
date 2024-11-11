@@ -1,0 +1,1 @@
+// q1 - NGR | Nearest Greater to right | Next Largest Element

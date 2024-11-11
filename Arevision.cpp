@@ -515,7 +515,7 @@ int rev9(string s, string p)
 // restarting revision
 // Q1- Maximum sum subarray of size K
 // Q2 return collection of First negative number in window of size K
-// q3 count occurences of anagrams
+// q3 count occurences of anagrams - An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
 // q4 maximum of all subarrays of size K
 // q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k
 
@@ -531,3 +531,60 @@ int rev9(string s, string p)
 // IP - string where a letter represents a type of toy
 // q8 end
 // q9 - minimum window substring - shortest window that has all the character in second parameter string
+
+int restart1(const vector<int> &arr, int k)
+{
+    int n = arr.size();
+    int current = 0;
+    int maxValue = INT_MAX;
+    for (int i = 0; i < n; i++)
+    {
+        current += arr[i];
+        if (i > k)
+        {
+            current -= arr[i - k];
+        }
+        maxValue = current > maxValue ? current : maxValue;
+    }
+    return maxValue;
+}
+
+vector<int> restart2(const vector<int> &arr, int k)
+{
+    vector<int> negatives;
+    vector<int> answer;
+    int n = arr.size();
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] < 0)
+        {
+            negatives.push_back(arr[i]);
+        }
+        if (i >= k)
+        {
+            if (i > k && arr[i - k] < 0)
+            {
+                negatives.erase(negatives.begin());
+            }
+            if (negatives.size() == 0)
+            {
+                answer.push_back(0);
+            }
+            else
+            {
+                answer.push_back(negatives.front());
+            }
+        }
+    }
+    return answer;
+}
+
+int restart3(string s, string p)
+{
+    unordered_map<char, int> map;
+    int n = s.size();
+    int equal = p.size();
+    for (int i = 0; i < n; i++)
+    {
+    }
+}

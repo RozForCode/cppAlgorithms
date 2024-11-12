@@ -517,8 +517,9 @@ int rev9(string s, string p)
 // Q2 return collection of First negative number in window of size K
 // q3 count occurences of anagrams - An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
 // q4 maximum of all subarrays of size K
-// q6 - // variable size sliding window- largest subarray of sum K,return the size of the largest subarray that has sum k
 
+// variable size sliding window
+// q6 - - largest subarray of sum K,return the size of the largest subarray that has sum k
 // q7 -  Longest substring with non-repeating characters
 
 // q8 start
@@ -583,8 +584,79 @@ int restart3(string s, string p)
 {
     unordered_map<char, int> map;
     int n = s.size();
-    int equal = p.size();
+    int window = p.size();
+    int current = 0;
+    int formed = 0;
+    int answer = 0;
+
+    for (auto c : p)
+    {
+        if (map[c] != 0)
+        {
+            formed++;
+        }
+        map[c]++;
+    }
+
     for (int i = 0; i < n; i++)
     {
+        if (i > window && map.find(s[i - window]) != map.end())
+        {
+            map[s[i - window]]--;
+            if (map[s[i - window]] == 0)
+            {
+                current--;
+            }
+        }
+        map[s[i]]++;
+        if (map[s[i]] == 1)
+        {
+            current++;
+        }
+        if (current == formed)
+        {
+            answer++;
+        }
     }
+    return answer;
+}
+
+int restart4(const vector<int> &arr, int k)
+{
+    int maxOfall = 0;
+    int n = arr.size();
+    int current = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i >= k)
+        {
+            current -= arr[i - k];
+        }
+        current += arr[i];
+        maxOfall = max(maxOfall, current);
+    }
+    return maxOfall;
+}
+
+int restart6(const vector<int> &arr, int k)
+{
+    int currentWindow = 0;
+    int sum = 0;
+    int n = arr.size();
+    int maxWindow = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        while (sum > k && currentWindow < i)
+        {
+            sum -= arr[currentWindow];
+            currentWindow++;
+        }
+        if (sum == k)
+        {
+            maxWindow = max(maxWindow, i - currentWindow + 1);
+        }
+    }
+    return maxWindow;
 }

@@ -660,3 +660,58 @@ int restart6(const vector<int> &arr, int k)
     }
     return maxWindow;
 }
+
+int restart7(string s)
+{
+    int i = 0;
+    unordered_map<char, int> map;
+    int n = s.size();
+    int maxSize = 0;
+    int currentWindow = 0;
+    for (i; i < n; i++)
+    {
+        if (map.find(s[i]) != map.end())
+        {
+            maxSize = max(maxSize, i - currentWindow + 1);
+            while (currentWindow < i && !(map[s[i]] == 0))
+            {
+                map[currentWindow]--;
+                currentWindow++;
+            }
+        }
+        map[s[i]]++;
+    }
+    return maxSize;
+}
+
+int restart8(string s)
+{
+    int maxSize = 0;
+    int i = 0;
+    int n = s.size();
+    int currentWindow = 0;
+    unordered_map<char, int> map;
+    for (int i = 0; i < n; i++)
+    {
+        if (map.size() == 2 && map.find(s[i]) == map.end())
+        { // new entry
+            maxSize = max(maxSize, i - currentWindow + 1);
+            int smaller = INT_MIN;
+            int charOfSmaller;
+            for (auto pair : map)
+            {
+                if (smaller > pair.second)
+                {
+                    smaller = pair.second;
+                    charOfSmaller = pair.first;
+                }
+            }
+            currentWindow = smaller + 1;
+            map.erase(charOfSmaller);
+        }
+        map[s[i]] = i;
+    }
+    return maxSize;
+}
+
+// q9 easy similar to q3 with formed and required but here it should be required > formed instead of required== formed

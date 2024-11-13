@@ -1,13 +1,17 @@
-// Identificaion - 1. K, 2. Largest or smallest    1 and 2 together
+// Identificaion - 1. Kth, 2. Largest or smallest element    1 and 2 together
 // k will be the size of heap - top of the heap will have the answer after calc
 // 2 types - min heap, max heap
 // k+smallest - max heap
 // k+largest  - min heap
+
 // pop top push
+
 // all heap questions are sorting questions - nlogk
 // heap make sorting complexity from nlogn (array) to nlogk
-// max heap cpp - priority_queue<int> max;
-// min heap cpp - priority_queue<int,vector<int>, greater<int>> max;
+
+// max heap cpp - priority_queue<int> max; -- largest on top, which is the first one to be accessed
+// min heap cpp - priority_queue<int,vector<int>, greater<int>> max; -- smallest on top
+
 // if the heap requires there to be pair in each insertion than replace
 // all int occurences with pair<int,int>
 // if in some case there is need of inserting a int with a pair you'll need pair<int,pair<int,int>>

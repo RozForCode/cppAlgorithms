@@ -17,7 +17,7 @@ vector<int> q5(vector<int> arr, int k)
         map[arr[i]]++;
     }
     for (auto c : map)
-    {
+    { // insertion mistake, queue check first value of pair which is key, so interchange it with frequency
         queue.push({c.first, c.second});
         if (queue.size() > k)
         {

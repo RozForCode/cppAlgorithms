@@ -18,7 +18,8 @@ int answer1(int arr[], int n, int k)
     }
     return min.top();
 }
-
+// q3 - You are given a nearly sorted array where each element is at most k positions
+// away from its correct position in the sorted array. Your task is to completely sort the array.
 // q3 - sort a k sorted array or nearly sorted array
 // values in the given array differ from there complete sorted array
 // index value by k... so range 0-k or 0+k

@@ -90,3 +90,39 @@ void removeCycle(Node *head)
     }
     fast->next = nullptr;
 }
+// so acc to floyd's cycle detection, the node at which
+// the cycle is detected can be used to break the cycle,
+// by keeping one pointer at the point and taking the next
+// one to the head and looping till they are equal and then
+// changing the node's next value  that was kept at the cycle
+// detection node to nullptr
+
+// now delete(by value) and reverse by myself
+
+void deleteNode(Node *&head, int val)
+{
+    if (head == nullptr)
+        return;
+    if (head->data == val)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+    Node *current = head;
+    while (current->next)
+    {
+        if (current->next && current->next->data == val)
+        {
+            Node *temp = current->next;
+            current->next = current->next->next;
+            delete temp;
+        }
+        current = current->next;
+    }
+}
+
+void ReverseNode(Node *&head)
+{
+}

@@ -138,4 +138,4 @@ void ReverseNode(Node *&head)
     head = prev;
 }
 
-// done - print, reverse, cycle detection and removal using floyd's priciple, insertion, deletion.
+// done - print, reverse, cycle detection and removal using floyd's principle, insertion, deletion.

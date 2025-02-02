@@ -139,3 +139,63 @@ void ReverseNode(Node *&head)
 }
 
 // done - print, reverse, cycle detection and removal using floyd's principle, insertion, deletion.
+
+// Following will be some good questions from AI bot
+/*
+1. Remove Duplicates from an Unsorted Linked List
+2. Reverse a Linked List in Groups of Size K
+3. Palindrome Linked List
+4. Intersection Point of Two Linked Lists
+5. Add Two Numbers Represented by Linked Lists
+6. LRU Cache Implementation
+7. Rotate a Linked List by K places
+8. Use a linked list to maintain a sorted leaderboard of player scores
+9. Use a linked list to represent a path in a grid-based game.
+10. Recursive solution of LinkedLists
+ */
+
+void RemoveDuplicates(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void ReverseK(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void Palindrome(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void Intersection(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void addNumbers(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void LRU(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void RotateK(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void leaderBoard(Node *head)
+{
+    if (head == nullptr)
+        return;
+}
+void gridPath(Node *head)
+{
+    if (head == nullptr)
+        return;
+}

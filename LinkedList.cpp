@@ -125,4 +125,17 @@ void deleteNode(Node *&head, int val)
 
 void ReverseNode(Node *&head)
 {
+    Node *prev = nullptr;
+    Node *current = head;
+    Node *temp;
+    while (current)
+    {
+        temp = current->next;
+        current->next = prev;
+        prev = current;
+        current = temp;
+    }
+    head = prev;
 }
+
+// done - print, reverse, cycle detection and removal using floyd's priciple, insertion, deletion.

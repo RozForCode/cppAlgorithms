@@ -346,3 +346,15 @@ Node *mergeTwoLists(Node *l1, Node *l2)
 }
 
 // 4. Palindrome
+bool Palindrome(Node *left, Node *right)
+{
+    if (right == nullptr)
+        return true;
+
+    bool isPal = Palindrome(left, right->next);
+    if (!isPal)
+        return false;
+    bool isEqual = left->data == right->data;
+    left = left->next;
+    return isEqual;
+}

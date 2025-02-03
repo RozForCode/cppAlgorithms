@@ -77,7 +77,7 @@ vector<int> answer(const vector<int> arr, int k)
     return result;
 }
 
-// incorrect - doesn't tkae care of window without negative
+// incorrect - doesn't take care of window without negative
 vector<int> revision(const vector<int> arr, int k)
 {
     int n = arr.size();
@@ -133,3 +133,6 @@ vector<int> revision1(const vector<int> arr, int k)
     }
     return result;
 }
+
+// push_back, erase(pointer), begin()->iterator,end(), front()->value, back(), size(), empty()
+// pop_back(), reverse(.begin(),.end()), sort(.begin(),.end());

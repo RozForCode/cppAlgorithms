@@ -132,7 +132,7 @@ int answer4(const vector<int> arr, int K)
     }
     return maxSum;
 }
-// so next day revision I intinctly did one variable 2 loop solution
+// so next day revision I did with my instinct one variable 2 loop solution
 
 int answer5(const vector<int> arr, int K)
 {
@@ -147,6 +147,23 @@ int answer5(const vector<int> arr, int K)
     {
         windowSum += arr[i] - arr[i - K];
         maxSum = max(windowSum, maxSum);
+    }
+    return maxSum;
+}
+
+int answer6(const vector<int> arr, int k)
+{
+    int windowSum;
+    int n = arr.size();
+    for (int i = 0; i < k; i++)
+    {
+        windowSum += arr[i];
+    }
+    int maxSum = windowSum;
+    for (int i = k; i < n; i++)
+    {
+        windowSum = arr[i] - arr[i - k];
+        maxSum = max(maxSum, windowSum);
     }
     return maxSum;
 }

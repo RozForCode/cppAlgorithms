@@ -1,5 +1,5 @@
-// count occurences of anagrams
-// anagrams - jumpbled forms of a word
+// count frequency of anagrams
+// anagrams - jumbled forms of a word
 #include <vector>
 #include <iostream>
 #include <climits>

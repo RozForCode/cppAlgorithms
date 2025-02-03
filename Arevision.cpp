@@ -6,7 +6,12 @@
 // q3 count occurences of anagrams
 // q4 maximum of all subarrays of size K
 */
+/*
+push_back, erase(pointer), begin()->iterator,end(), front()->value, back(), size(), empty()
+pop_back(), reverse(.begin(),.end()), sort(.begin(),.end());
 
+2 vectors - neg and result, fill neg one loop for k; next loop- remove n.front() if i-k < 0, if neg.size()!=0; add to result;
+*/
 #include <iostream>
 #include <vector>
 #include <unordered_map>

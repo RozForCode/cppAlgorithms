@@ -153,11 +153,12 @@ void ReverseNode(Node *&head)
 3. Palindrome Linked List -
 4. Intersection Point of Two Linked Lists
 5. Add Two Numbers Represented by Linked Lists
-6. LRU Cache Implementation
-7. Rotate a Linked List by K places
-8. Use a linked list to maintain a sorted leaderboard of player scores
-9. Use a linked list to represent a path in a grid-based game.
-10. Recursive solution of LinkedLists
+
+
+6. Rotate a Linked List by K places
+7. Use a linked list to maintain a sorted leaderboard of player scores
+8. Use a linked list to represent a path in a grid-based game.
+9. Recursive solution of LinkedLists
  */
 #include <iostream>
 #include <unordered_set>
@@ -228,16 +229,26 @@ void Intersection(Node *head)
     if (head == nullptr)
         return;
 }
-void addNumbers(Node *head)
+
+Node *addNumbers(Node *l1, Node *l2)
 {
-    if (head == nullptr)
-        return;
+    Node *dummy = new Node();
+    Node *curr = dummy;
+    int carry = 0;
+    while (l1 || l2 || carry != 0)
+    {
+        int sum = (l1 ? l1->data : 0) + (l2 ? l2->data : 0) + carry;
+        carry = sum / 10;
+        curr->next = new Node(sum % 10);
+        curr = curr->next;
+        if (l1)
+            l1 = l1->next;
+        if (l2)
+            l2 = l2->next;
+    }
+    return dummy->next;
 }
-void LRU(Node *head)
-{
-    if (head == nullptr)
-        return;
-}
+
 void RotateK(Node *head)
 {
     if (head == nullptr)

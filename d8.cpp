@@ -1,6 +1,6 @@
 // pick toys
 // john goes to mall with his mother and sees a rack of toys
-// mom gives him conditions - 1.toys picked should be continous in the rack
+// mom gives him conditions - 1.toys picked should be continuous in the rack
 // 2. He can pick 2 type of toys - toys should belong to maximum 2 types
 // john wants maximum no.of toys from the given rack
 // so variable size sliding window
@@ -55,7 +55,8 @@ int answer2(string s)
 
             int minIndex = 2;
             char toyToRemove;
-            // time complexitiy here is 0(1). so overall algo complexity remains 0(n)
+
+            // time complexity here is 0(1). so overall algo complexity remains 0(n)
             for (auto &pair : map)
             {
                 if (pair.second < minIndex)

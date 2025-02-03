@@ -23,7 +23,7 @@ while(current>k){remove calculation for i(currentWindowIndex);i++}
 #include <unordered_map>
 using namespace std;
 
-int intialanswer(string s)
+int initialAnswer(string s)
 {
     int currentWindowIndex;
     unordered_map<char, int> map;
@@ -46,7 +46,7 @@ int intialanswer(string s)
 
 // it can be solved without using pair by using map.find and just storing the index in map
 // gpt reviewed
-int intialanswer(string s)
+int initialAnswer(string s)
 {
     int currentWindowIndex = 0;
     unordered_map<char, int> map;
@@ -66,7 +66,7 @@ int intialanswer(string s)
 }
 
 // longest substring with K unique characters
-int answer1(string s, int k)
+int answer1(string s)
 {
     int n = s.length();
     unordered_map<char, int> map;
@@ -83,4 +83,29 @@ int answer1(string s, int k)
         map[s[i]] = i;
     }
     return maxSubstring;
+}
+
+/// longest substring with k unique characters
+
+int uni(string s)
+{
+    unordered_map<char, int> charMap;
+    int n = s.size();
+    int windowSize = 0;
+    int maxWindow = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (charMap.find(s[i]) != charMap.end())
+        {
+            charMap[s[i]] = i;
+        }
+        else
+        {
+            maxWindow = max(maxWindow, i - windowSize);
+            windowSize = charMap[s[i]] + 1;
+            charMap[s[i]] = i;
+        }
+    }
+    return maxWindow;
 }

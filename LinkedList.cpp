@@ -274,8 +274,75 @@ void RotateK(Node *head, int k)
 // *********
 // rotating k times is the same as rotating k%length times
 // *******
-void gridPath(Node *head)
+
+// Grid Path problem
+struct GridNode
 {
+    int x, y;       // Coordinates of the cell
+    GridNode *next; // Pointer to the next cell in the path
+
+    GridNode(int xCoord, int yCoord) : x(xCoord), y(yCoord), next(nullptr) {}
+};
+
+// Function to add a new cell to the path
+void addCell(GridNode *&head, int x, int y)
+{
+    GridNode *newGridNode = new GridNode(x, y);
     if (head == nullptr)
-        return;
+    {
+        head = newGridNode; // If the path is empty, this is the first cell
+    }
+    else
+    {
+        // Traverse to the end of the list and add the new cell
+        GridNode *current = head;
+        while (current->next != nullptr)
+        {
+            current = current->next;
+        }
+        current->next = newGridNode;
+    }
 }
+
+// Recursive functions
+// 1.print a Linked List (Recursive)
+void printReverse(Node *head)
+{
+    if (!head)
+        return;
+    printReverse(head->next);
+    cout << head->data << " ";
+}
+
+// 2. Reverse a LinkedList (Recursive)
+Node *ReverseList(Node *head)
+{
+    if (!head || !head->next)
+        return head;
+    Node *newHead = ReverseList(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+    return newHead;
+}
+
+// 3. Merge Sorted LinkedList
+
+Node *mergeTwoLists(Node *l1, Node *l2)
+{
+    if (!l1)
+        return l2;
+    if (!l2)
+        return l1;
+    if (l1->data < l2->data)
+    {
+        l1->next = mergeTwoLists(l1->next, l2);
+        return l1;
+    }
+    else
+    {
+        l2->next = mergeTwoLists(l1, l2->next);
+        return l2;
+    }
+}
+
+// 4. Palindrome

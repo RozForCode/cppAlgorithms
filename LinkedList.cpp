@@ -142,7 +142,7 @@ void ReverseNode(Node *&head)
 
 // Following will be some good questions from AI bot
 /*
-1. Remove Duplicates from an Unsorted Linked List
+1. Remove Duplicates from an Unsorted Linked List // using hash
 2. Reverse a Linked List in Groups of Size K
 3. Palindrome Linked List
 4. Intersection Point of Two Linked Lists
@@ -153,17 +153,38 @@ void ReverseNode(Node *&head)
 9. Use a linked list to represent a path in a grid-based game.
 10. Recursive solution of LinkedLists
  */
-
+#include <iostream>
+#include <unordered_set>
 void RemoveDuplicates(Node *head)
 {
     if (head == nullptr)
         return;
+    unordered_set<int> seen;
+    Node *current = head;
+    Node *prev = nullptr;
+    while (current->next)
+    {
+        if (seen.find(current->data) != seen.end())
+        {
+            prev->next = current->next;
+            delete current;
+            current = prev;
+        }
+        else
+        {
+            seen.insert(current->data);
+            prev = current;
+            current = current->next;
+        }
+    }
 }
+
 void ReverseK(Node *head)
 {
     if (head == nullptr)
         return;
 }
+
 void Palindrome(Node *head)
 {
     if (head == nullptr)

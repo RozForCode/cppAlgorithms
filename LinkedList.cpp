@@ -156,9 +156,8 @@ void ReverseNode(Node *&head)
 
 
 6. Rotate a Linked List by K places
-7. Use a linked list to maintain a sorted leaderboard of player scores
-8. Use a linked list to represent a path in a grid-based game.
-9. Recursive solution of LinkedLists
+7. Use a linked list to represent a path in a grid-based game.
+8. Recursive solution of LinkedLists
  */
 #include <iostream>
 #include <unordered_set>
@@ -249,16 +248,32 @@ Node *addNumbers(Node *l1, Node *l2)
     return dummy->next;
 }
 
-void RotateK(Node *head)
+void RotateK(Node *head, int k)
 {
-    if (head == nullptr)
+    if (head == nullptr || k == 0)
         return;
+    int length = 0;
+    Node *tail = head;
+    while (tail->next)
+    {
+        tail = tail->next;
+        length++;
+    }
+    tail->next = head;
+    k = k % length;
+
+    // rotating k times is the same as rotating k%length times
+    Node *newTail = head;
+    for (int i = 0; i < length - k - 1; i++)
+    {
+        newTail = newTail->next;
+    }
+    newTail->next = nullptr;
 }
-void leaderBoard(Node *head)
-{
-    if (head == nullptr)
-        return;
-}
+
+// *********
+// rotating k times is the same as rotating k%length times
+// *******
 void gridPath(Node *head)
 {
     if (head == nullptr)

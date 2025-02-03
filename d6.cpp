@@ -114,3 +114,4 @@ int revision1(const vector<int> arr, int k)
     }
     return maxWindow;
 }
+// all edge cases control statements before the perfect match case

@@ -7,6 +7,12 @@ struct Node
     int data;
     Node *next;
 
+    Node()
+    {
+        data = 0;
+        next = nullptr;
+    }
+
     Node(int val)
     {
         data = val;
@@ -144,7 +150,7 @@ void ReverseNode(Node *&head)
 /*
 1. Remove Duplicates from an Unsorted Linked List // using hash
 2. Reverse a Linked List in Groups of Size K
-3. Palindrome Linked List
+3. Palindrome Linked List -
 4. Intersection Point of Two Linked Lists
 5. Add Two Numbers Represented by Linked Lists
 6. LRU Cache Implementation
@@ -179,19 +185,46 @@ void RemoveDuplicates(Node *head)
     }
 }
 
-void ReverseK(Node *head)
+Node *ReverseK(Node *head, int k)
 {
-    if (head == nullptr)
-        return;
+    if (head == nullptr || k)
+        return head;
+
+    Node *dummy = new Node();
+    dummy->next = head;
+    Node *prev = dummy, *curr = dummy, *next = nullptr;
+
+    int length = 0;
+    while (curr->next != nullptr)
+    {
+        curr = curr->next;
+        length++;
+    }
+    while (length >= k)
+    {
+        curr = prev->next;
+        next = curr->next;
+        for (int i = 0; i < k; i++)
+        {
+            curr->next = next->next;
+            next->next = prev->next;
+            prev->next = next;
+            next = curr->next;
+        }
+        prev = curr;
+        length -= k;
+    }
+    return dummy->next;
 }
 
 void Palindrome(Node *head)
 {
     if (head == nullptr)
         return;
+    // find the middle of the list, reverse it then compare the two halves
 }
 void Intersection(Node *head)
-{
+{ // easy
     if (head == nullptr)
         return;
 }

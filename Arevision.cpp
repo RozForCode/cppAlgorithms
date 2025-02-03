@@ -7,10 +7,27 @@
 // q4 maximum of all subarrays of size K
 */
 /*
+arr functions
 push_back, erase(pointer), begin()->iterator,end(), front()->value, back(), size(), empty()
 pop_back(), reverse(.begin(),.end()), sort(.begin(),.end());
 
 2 vectors - neg and result, fill neg one loop for k; next loop- remove n.front() if i-k < 0, if neg.size()!=0; add to result;
+*/
+/*
+Map functions
+mp[key] = value	Inserts or updates key with value.
+mp.at(key)	Returns the value of key (throws error if key not found).
+mp.insert({key, value})	Inserts a key-value pair (does nothing if key already exists).
+mp.erase(key)	Removes an element by key.
+mp.count(key)	Returns 1 if key exists, else 0.
+mp.find(key)	Returns an iterator to key or mp.end() if not found.
+mp.size()	Returns the number of elements.
+mp.empty()	Checks if the map is empty (true/false).
+mp.clear()	Removes all elements.
+mp.begin()	Returns an iterator to the first element.
+mp.end()	Returns an iterator to one past the last element.
+mp.bucket_count()	Returns the number of buckets (hash table partitions).
+mp.load_factor()	Returns the load factor (elements/buckets).
 */
 #include <iostream>
 #include <vector>

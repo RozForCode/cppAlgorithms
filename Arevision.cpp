@@ -29,6 +29,27 @@ mp.end()	Returns an iterator to one past the last element.
 mp.bucket_count()	Returns the number of buckets (hash table partitions).
 mp.load_factor()	Returns the load factor (elements/buckets).
 */
+
+/*
+Deque functions
+dq.push_back(x)	Adds x at the end.
+dq.push_front(x)	Adds x at the front.
+dq.pop_back()	Removes the last element.
+dq.pop_front()	Removes the first element.
+dq.front()	Returns the first element.
+dq.back()	Returns the last element.
+dq[i]	Accesses the element at index i.
+dq.at(i)	Accesses the element at index i with bounds checking.
+dq.insert(it, x)	Inserts x at iterator it.
+dq.erase(it)	Removes element at iterator it.
+dq.size()	Returns the number of elements.
+dq.empty()	Checks if the deque is empty (true/false).
+dq.clear()	Removes all elements.
+dq.begin()	Returns an iterator to the first element.
+dq.end()	Returns an iterator to one past the last element.
+dq.rbegin()	Returns a reverse iterator to the last element.
+dq.rend()	Returns a reverse iterator to before the first element.
+*/
 #include <iostream>
 #include <vector>
 #include <unordered_map>

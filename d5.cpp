@@ -28,7 +28,8 @@ vector<int> maxOfSubArrays(const vector<int> arr, int k)
     return result;
 }
 // this sliding window solution implements a deque and simple if statements for the deque to maintain index of the maximum value in the array
-// why stores indexes instead of maximum values in the dq? -> 1. deals with duplicates 2. indow Boundaries: When you store indices, you can easily check if the front of the deque is out of the current window using maximums.front() == i - k.
+// why stores indexes instead of maximum values in the dq? -> 1. deals with duplicates 2. indow Boundaries: When you store indices, you can easily
+// check if the front of the deque is out of the current window using maximums.front() == i - k.
 
 // revision
 

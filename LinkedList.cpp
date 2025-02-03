@@ -358,3 +358,34 @@ bool Palindrome(Node *left, Node *right)
     left = left->next;
     return isEqual;
 }
+
+// Reverse LinkedList recursively and iteratively
+Node *ReverseRecursive(Node *head)
+{
+    if (head == nullptr)
+        return head;
+    Node *newTail = ReverseRecursive(head);
+    head->next->next = head;
+    head->next = nullptr;
+
+    return newTail;
+}
+
+Node *Reverse(Node *head)
+{
+    if (head == nullptr)
+        return head;
+    Node *curr = head;
+    Node *prev = nullptr;
+    Node *next = nullptr;
+
+    while (curr != nullptr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
+    return head;
+}

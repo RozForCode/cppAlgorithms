@@ -61,3 +61,19 @@ int fibonacci_it(int n)
 }
 
 // q1 - NGR | Nearest Greater to right | Next Largest Element
+#include <stack>
+vector<int> ngr(vector<int> arr)
+{
+    stack<int> st;
+    vector<int> result;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        while (!st.empty() && st.top() <= arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(st.empty() ? -1 : st.top());
+        st.push(arr[i]);
+    }
+    return result;
+}

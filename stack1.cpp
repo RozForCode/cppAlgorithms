@@ -198,3 +198,30 @@ int minSizeSubarraySum2(vector<int> arr, int sum)
         return -1;
     return minSize;
 }
+
+// Minimum Moves to Equal Array Elements
+/*
+Given an array of integers nums, you can perform the following operation any number of times:
+
+Choose any element and increment it by 1 (i.e., nums[i] += 1).
+Find the minimum number of moves required to make all elements in the array equal.
+
+-- heap of size arr.size()/2
+-- to get the value that is mean
+-- or is the element selected randomly
+-- then loop?
+-- wrong as no decrement is allowed
+*/
+#include <algorithm>
+int movesAllowed(vector<int> arr)
+{
+    int maxElement = *max_element(arr.begin(), arr.end());
+    int moves = 0;
+    for (int num : arr)
+    {
+        moves += maxElement - num;
+    }
+    return moves;
+}
+
+// key takeway - no need to perform actual calculation or avoid actual calculation wherever possible

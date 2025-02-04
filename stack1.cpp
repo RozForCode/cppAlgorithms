@@ -194,5 +194,7 @@ int minSizeSubarraySum2(vector<int> arr, int sum)
             currentSum += arr[i];
         }
     }
+    if (minSize == 0)
+        return -1;
     return minSize;
 }

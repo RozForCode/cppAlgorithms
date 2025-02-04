@@ -143,3 +143,56 @@ int maxSubarraySumAtMostK(vector<int> &nums, int k)
 
     return maxSum;
 }
+
+// Minimum Size Subarray Sum
+int minSizeSubarraySum(vector<int> arr, int sum)
+{
+    int minSize = INT_MAX;
+    int n = arr.size();
+    int windowSum = 0;
+    vector<int> prefixSum(n + 1, 0);
+    for (int i = 0; i < n; i++)
+    {
+        prefixSum[i + 1] = prefixSum[i] + arr[i];
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            windowSum = prefixSum[j + 1] - prefixSum[i];
+            if (windowSum == sum)
+            {
+                minSize = minSize < (i - j) ? minSize : (j - i + 1);
+            }
+        }
+    }
+    return minSize;
+}
+// wasn't prefix sliding window it was variable size sliding window question
+int minSizeSubarraySum2(vector<int> arr, int sum)
+{
+    int minSize = INT_MAX;
+    int n = arr.size();
+    int currentSum = 0;
+    int windowIndex = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        while (currentSum > sum)
+        {
+            currentSum -= arr[windowIndex];
+            windowIndex++;
+        }
+        if (currentSum < sum)
+        {
+            currentSum += arr[i];
+        }
+        if (currentSum == sum)
+        {
+            minSize = minSize < (i - windowIndex + 1) ? minSize : (i - windowIndex + 1);
+            currentSum += arr[i];
+        }
+    }
+    return minSize;
+}

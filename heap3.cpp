@@ -34,5 +34,29 @@ int *answer4(int *arr, int n, int k, int value)
     return result;
 }
 
+// q4 again - K closest numbers to a given value
+// min heap - could have used any heap
+
+int *answer4_1(int *arr, int k, int value, int n)
+{
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
+    int *result = new int[k];
+    for (int i = 0; i < n; i++)
+    {
+        minHeap.push(make_pair(abs(arr[i] - value), i));
+        if (minHeap.size() > k)
+        {
+            minHeap.pop();
+        }
+    }
+    int j = 0;
+    while (!minHeap.empty())
+    {
+        result[j] = arr[minHeap.top().second];
+        minHeap.pop();
+        j++;
+    }
+}
+
 // Top K Frequent numbers
 // this will be solved with the help of hash

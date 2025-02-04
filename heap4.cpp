@@ -4,7 +4,7 @@
 
 // from video - we have to use hash
 // hashing -  hashing refers to the process of converting input data (like a string or number) into a fixed-size value, typically called a hash code or hash value. This is done using a hash function.4
-// first I'll study about hash function, hash table, collision, and applucation of hashing
+// first I'll study about hash function, hash table, collision, and application of hashing
 // then move onto the q5
 
 // hash function - takes input data(key) and returns fixed sized integer called hash value

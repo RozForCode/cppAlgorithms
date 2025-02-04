@@ -1,4 +1,4 @@
-// Connect Ropes to Minimise the Cost
+// Connect Ropes to Minimize the Cost
 /*
 You are given multiple ropes with different lengths. Your task is to connect all the ropes into a single rope.
 Each time you connect two ropes, the cost of connecting them is equal to the sum of their lengths.

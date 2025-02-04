@@ -62,3 +62,4 @@ int answer(const vector<int> arr, int k1, int k2)
 
     return result;
 }
+// pretty easy

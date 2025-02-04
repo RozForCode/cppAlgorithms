@@ -3,9 +3,9 @@
 // priority_queue<pair<int, string>, vector<pair<int, string>>, greater<pair<int, string>>> minHeap;
 //  priority_queue<pair<int, string>> maxHeap;
 
-// MAX HEAP - TOP is LARGER
+// MAX HEAP - TOP is LARGER, minimum at the bottom
 
-// MIN HEAP - TOP is SMALLER
+// MIN HEAP - TOP is SMALLER maximum at the bottom
 
 // MIN Heap - priority_queue<int,vector<int>,greater<int>>
 //  type of elements ,underlying container, comparison function

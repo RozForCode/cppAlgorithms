@@ -77,3 +77,17 @@ vector<int> ngr(vector<int> arr)
     }
     return result;
 }
+
+// Bitwise right shift for division and bitwise left shift for division
+/*
+Shifting a number n right by k positions is equivalent to dividing n by  2 to the power k
+(integer division).
+
+Formula:
+
+n>>k=[ n/2(to the power )K]
+*/
+
+/*
+Similarly shifting is like multiplying n to 2 to the power k
+*/

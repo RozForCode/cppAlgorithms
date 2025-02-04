@@ -91,3 +91,55 @@ n>>k=[ n/2(to the power )K]
 /*
 Similarly shifting is like multiplying n to 2 to the power k
 */
+// You are given an array of integers nums and an integer k.
+// Your task is to find the maximum sum of a subarray (contiguous elements) such that the length of the subarray is at most k.
+
+// deepseek answer
+/*
+it's like a o(n2) sliding window that is efficient
+cause of adding prefix window on top of it the inner loops works much better
+*/
+int maxSubarraySumAtMostK(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    int maxSum = INT_MIN;
+
+    // Compute prefix sums
+    vector<int> prefixSum(n + 1, 0);
+    for (int i = 0; i < n; i++)
+    {
+        prefixSum[i + 1] = prefixSum[i] + nums[i];
+    }
+
+    // Use a deque to maintain the minimum prefix sum in the current window
+    deque<int> dq;
+    dq.push_back(0); // Start with the first prefix sum
+
+    for (int i = 1; i <= n; i++)
+    {
+        // Remove prefix sums outside the current window
+        while (!dq.empty() && dq.front() < i - k)
+        {
+            dq.pop_front();
+        }
+
+        // Update the maximum sum
+        if (!dq.empty())
+        {
+            int currentSum = prefixSum[i] - prefixSum[dq.front()];
+            if (currentSum > maxSum)
+            {
+                maxSum = currentSum;
+            }
+        }
+
+        // Maintain the deque in increasing order
+        while (!dq.empty() && prefixSum[i] <= prefixSum[dq.back()])
+        {
+            dq.pop_back();
+        }
+        dq.push_back(i);
+    }
+
+    return maxSum;
+}

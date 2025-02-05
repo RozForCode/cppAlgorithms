@@ -225,3 +225,13 @@ int movesAllowed(vector<int> arr)
 }
 
 // key takeway - no need to perform actual calculation or avoid actual calculation wherever possible
+
+/*
+Minimize Maximum Difference After Operations
+Problem Statement:
+Given an array nums of size n and an integer k, you are allowed
+ to increment or decrement each element by at most k.
+Find the minimum possible value of the difference between
+the maximum and minimum elements of the array after applying the operation to any elements.
+
+*/

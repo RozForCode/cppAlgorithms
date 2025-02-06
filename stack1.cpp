@@ -94,7 +94,7 @@ Similarly shifting is like multiplying n to 2 to the power k
 // You are given an array of integers nums and an integer k.
 // Your task is to find the maximum sum of a subarray (contiguous elements) such that the length of the subarray is at most k.
 
-// deepseek answer
+// deep seek answer
 /*
 it's like a o(n2) sliding window that is efficient
 cause of adding prefix window on top of it the inner loops works much better
@@ -224,7 +224,7 @@ int movesAllowed(vector<int> arr)
     return moves;
 }
 
-// key takeway - no need to perform actual calculation or avoid actual calculation wherever possible
+// key takeaway - no need to perform actual calculation or avoid actual calculation wherever possible
 
 /*
 Minimize Maximum Difference After Operations

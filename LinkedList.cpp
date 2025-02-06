@@ -362,7 +362,7 @@ bool Palindrome(Node *left, Node *right)
 // Reverse LinkedList recursively and iteratively
 Node *ReverseRecursive(Node *head)
 {
-    if (head == nullptr)
+    if (head->next == nullptr)
         return head;
     Node *newTail = ReverseRecursive(head);
     head->next->next = head;

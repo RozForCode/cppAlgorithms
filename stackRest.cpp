@@ -47,3 +47,23 @@ vector<int> ngr(vector<int> arr)
     }
     return result;
 }
+
+// Nearest Smallest to left
+vector<int> nsl(vector<int> arr)
+{
+    int n = arr.size();
+    stack<int> st;
+    vector<int> result;
+    for (int i = 0; i < n; i++)
+    {
+        while (!st.empty() && st.top() >= arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(!st.empty() ? -1 : st.top());
+        st.push(arr[i]);
+    }
+    return result;
+}
+
+// STOCK SPAN PROBLEM

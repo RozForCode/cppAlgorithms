@@ -1,3 +1,20 @@
+// q1 - NGR | Nearest Greater to right | Next Largest Element
+#include <stack>
+vector<int> ngr(vector<int> arr)
+{
+    stack<int> st;
+    vector<int> result;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        while (!st.empty() && st.top() <= arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(st.empty() ? -1 : st.top());
+        st.push(arr[i]);
+    }
+    return result;
+}
 // Intro to stack and identification
 /*
 
@@ -58,24 +75,6 @@ int fibonacci_it(int n)
         dp[i] = dp[i - 1] + dp[i - 2];
     }
     return dp[n];
-}
-
-// q1 - NGR | Nearest Greater to right | Next Largest Element
-#include <stack>
-vector<int> ngr(vector<int> arr)
-{
-    stack<int> st;
-    vector<int> result;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        while (!st.empty() && st.top() <= arr[i])
-        {
-            st.pop();
-        }
-        result.push_back(st.empty() ? -1 : st.top());
-        st.push(arr[i]);
-    }
-    return result;
 }
 
 // Bitwise right shift for division and bitwise left shift for division

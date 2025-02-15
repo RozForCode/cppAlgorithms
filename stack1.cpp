@@ -28,8 +28,8 @@ Identification
 usually on array or heap (heap usually related to sorting)
 if brute force solution is of O(n^2) and the inner loop has following patterns:
 -> j= 0 to i j++
--> j= i to 0 j--
--> j=i to n j++
+-> j= i-1 to 0 j--
+-> j=i-1 to n j++
 -> j=n to i j--
 then it's likely it can be solved with stack
 

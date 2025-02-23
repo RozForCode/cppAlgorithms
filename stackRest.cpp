@@ -112,13 +112,16 @@ vector<int> stockSpan(vector<int> arr)
     vector<int> span;
     for (int i = 0; i < n; i++)
     {
-        if (!st.empty() && st.top().first <= arr[i])
+        while (!st.empty() && st.top().first < arr[i])
         {
+            st.pop();
         }
-        else
-        {
-            result.push_back(1);
-        }
+        result.push_back(st.empty() ? -1 : st.top().first);
+        st.push(make_pair(arr[i], i));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = arr[i] - i;
     }
     return result;
 }

@@ -66,4 +66,61 @@ vector<int> nsl(vector<int> arr)
     return result;
 }
 
-// STOCK SPAN PROBLEM
+// Stack NGR && NRL revision
+// ngr
+vector<int> ngrRevision(vector<int> arr)
+{
+    vector<int> result;
+    int n = arr.size();
+    stack<int> st;
+
+    for (int i = n - 1; i <= 0; i++)
+    {
+        while (!st.empty() && st.top() <= arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(st.empty() ? -1 : st.top());
+        st.push(arr[i]);
+    }
+    return result;
+}
+
+vector<int> nglRevision(vector<int> arr)
+{
+    vector<int> result;
+    int n = arr.size();
+    stack<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        while (!st.empty() && st.top() <= arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(st.empty() ? -1 : st.top());
+        st.push(arr[i]);
+    }
+    return result;
+}
+
+// STOCK SPAN PROBLEM - nearest greater to left
+vector<int> stockSpan(vector<int> arr)
+{
+    int n = arr.size();
+    vector<int> result;
+    stack<pair<int, int>> st;
+    vector<int> span;
+    for (int i = 0; i < n; i++)
+    {
+        if (!st.empty() && st.top().first <= arr[i])
+        {
+        }
+        else
+        {
+            result.push_back(1);
+        }
+    }
+    return result;
+}
+
+// do smallest nearest questions for revision

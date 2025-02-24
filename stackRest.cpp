@@ -116,14 +116,34 @@ vector<int> stockSpan(vector<int> arr)
         {
             st.pop();
         }
-        result.push_back(st.empty() ? -1 : st.top().first);
+        result.push_back(st.empty() ? -1 : st.top().second);
         st.push(make_pair(arr[i], i));
     }
     for (int i = 0; i < n; i++)
     {
-        arr[i] = arr[i] - i;
+        result[i] = result[i] - i;
     }
     return result;
 }
+// stock span revision
+vector<int> stockRevision(vector<int> arr)
+{
+    int n = arr.size();
+    stack<pair<int, int>> st;
+    vector<int> result;
 
+    for (int i = 0; i < n; i++)
+    {
+        while (!st.empty() && st.top().first < arr[i])
+        {
+            st.pop();
+        }
+        result.push_back(st.empty() ? -1 : st.top().second);
+        st.push(make_pair(arr[i], i));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        result[i] = i - result[i];
+    }
+}
 // do smallest nearest questions for revision

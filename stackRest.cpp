@@ -145,5 +145,6 @@ vector<int> stockRevision(vector<int> arr)
     {
         result[i] = i - result[i];
     }
+    return result;
 }
 // do smallest nearest questions for revision

@@ -1,34 +1,34 @@
 // // making a simple tree
-// struct TreeNode
-// {
-//     int data;
-//     TreeNode *right;
-//     TreeNode *left;
-//     TreeNode(int value)
-//     {
-//         this->data = value;
-//         this->left = nullptr;
-//         this->right = nullptr;
-//         /*
-//         other way to initialize
-//         data(value)
-//         left(nullptr)
-//         right(nullptr)
-//         */
-//     }
-// };
+struct TreeNode
+{
+    int data;
+    TreeNode *right;
+    TreeNode *left;
+    TreeNode(int value)
+    {
+        this->data = value;
+        this->left = nullptr;
+        this->right = nullptr;
+        /*
+        other way to initialize
+        data(value)
+        left(nullptr)
+        right(nullptr)
+        */
+    }
+};
 
 // // lets make a print function to print this tree beautifully
-// #include <iostream>
-// #include <vector>
-// #include <cmath>
-// #include <string>
-// #include <iomanip>
-// #include <algorithm>
-// #include <queue>
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <string>
+#include <iomanip>
+#include <algorithm>
+#include <queue>
 // // The #include <iomanip> header in C++ gives you access to "input/output manipulators" — these
 // // are tools that help you format text and numbers when printing to the console (or reading input).
-// using namespace std;
+using namespace std;
 // // recursive method to get the height of the tree
 // int getHeight(TreeNode *root)
 // {
@@ -81,111 +81,24 @@
 //         }
 //     }
 // }
-// int main()
-// {
-//     TreeNode *root = new TreeNode(10);
-//     root->left = new TreeNode(9);
-//     root->right = new TreeNode(8);
-//     root->right->left = new TreeNode(7);
-//     root->right->right = new TreeNode(6);
-//     printTree(root);
-//     return 0;
-// }
-#include <iostream>
-#include <queue>
-#include <cmath>
-#include <string>
-using namespace std;
-
-struct TreeNode
-{
-    int data;
-    TreeNode *right;
-    TreeNode *left;
-    TreeNode(int value)
-    {
-        this->data = value;
-        this->left = nullptr;
-        this->right = nullptr;
-    }
-};
-
-int getHeight(TreeNode *root)
-{
-    if (!root)
-        return 0;
-    return 1 + max(getHeight(root->right), getHeight(root->left));
-}
-
-void printTree(TreeNode *root)
+void printTree(TreeNode *root, int space = 0, int indent = 5)
 {
     if (!root)
         return;
 
-    int maxLevel = getHeight(root);
-    queue<TreeNode *> q;
-    q.push(root);
+    space += indent;
 
-    for (int level = 1; level <= maxLevel; level++)
-    {
-        int levelNodes = pow(2, level - 1);         // Number of nodes at this level
-        int spacing = pow(2, maxLevel - level) - 1; // Spacing between nodes
+    // Print right child first (so it's on top in output)
+    printTree(root->right, space);
 
-        // Print the nodes at the current level
-        for (int i = 0; i < levelNodes; i++)
-        {
-            TreeNode *curr = q.front();
-            q.pop();
+    // Print current node after space
+    cout << endl;
+    for (int i = indent; i < space; ++i)
+        cout << ' ';
+    cout << root->data << "\n";
 
-            // Print spacing before the node
-            cout << string(spacing, ' ');
-
-            // Print the node or a blank space
-            if (curr)
-                cout << curr->data;
-            else
-                cout << " ";
-
-            // Print spacing after the node
-            cout << string(spacing, ' ');
-
-            // Push children into the queue
-            if (curr)
-            {
-                q.push(curr->left);
-                q.push(curr->right);
-            }
-            else
-            {
-                q.push(nullptr);
-                q.push(nullptr);
-            }
-        }
-        cout << endl;
-
-        // Print the branches (/ and \) for the next level
-        if (level != maxLevel)
-        {
-            for (int j = 0; j < levelNodes; j++)
-            {
-                // Spacing before the branch
-                cout << string(pow(2, maxLevel - level - 1), ' ');
-
-                // Print the left branch '/'
-                cout << "/";
-
-                // Spacing between the branches
-                cout << string(pow(2, maxLevel - level + 1) - 1, ' ');
-
-                // Print the right branch '\'
-                cout << "\\";
-
-                // Spacing after the branch
-                cout << string(pow(2, maxLevel - level - 1), ' ');
-            }
-            cout << endl;
-        }
-    }
+    // Print left child
+    printTree(root->left, space);
 }
 
 int main()

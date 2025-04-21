@@ -30,9 +30,9 @@ void traversalRecursive(TreeNode *root)
 {
     if (!root)
         return;
-    traversal(root->left);
+    traversalRecursive(root->left);
     cout << root->data << "     ";
-    traversal(root->right);
+    traversalRecursive(root->right);
 }
 // without recursion
 #include <vector>

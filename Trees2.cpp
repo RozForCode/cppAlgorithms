@@ -24,11 +24,36 @@ struct TreeNode
         */
     }
 };
-void traversal(TreeNode *root)
+
+// with recursion
+void traversalRecursive(TreeNode *root)
 {
     if (!root)
         return;
     traversal(root->left);
     cout << root->data << "     ";
     traversal(root->right);
+}
+// without recursion
+#include <vector>
+#include <stack>
+
+vector<int> traversalIterative(TreeNode *root)
+{
+    vector<int> ans;
+    stack<TreeNode *> s;
+    TreeNode *curr = root;
+    while (curr != nullptr || !s.empty())
+    {
+        while (!curr)
+        {
+            s.push(curr);
+            curr = curr->left;
+        }
+        curr = s.top();
+        s.pop();
+        ans.push_back(curr->data);
+        curr = curr->right;
+    }
+    return ans;
 }

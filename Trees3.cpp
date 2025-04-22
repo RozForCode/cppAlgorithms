@@ -41,13 +41,13 @@ vector<int> preOrderTraversalIterative(TreeNode *root)
     vector<int> ans;
     TreeNode *curr = root;
     stack<TreeNode *> s;
-    while (curr != nullptr || s.empty())
+    while (curr != nullptr || !s.empty())
     {
         ans.push_back(curr->data);
         while (curr != nullptr)
         {
             s.push(curr->left);
-            curr->left;
+            curr = curr->left;
         }
         curr = s.top();
         s.pop();

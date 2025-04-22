@@ -56,3 +56,22 @@ vector<int> preOrderTraversalIterative(TreeNode *root)
     }
     return ans;
 }
+
+vector<int> preOrder(TreeNode *root)
+{
+    vector<int> ans;
+    stack<TreeNode *> s;
+    TreeNode *curr = root;
+    s.push(curr);
+    while (!s.empty())
+    {
+        ans.push_back(curr->data);
+        s.pop();
+        if (curr->right != nullptr)
+            s.push(curr->right);
+        if (curr->left != nullptr)
+            s.push(curr->left);
+    }
+
+    return ans;
+}

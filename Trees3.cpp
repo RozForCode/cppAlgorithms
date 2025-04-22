@@ -75,3 +75,34 @@ vector<int> preOrder(TreeNode *root)
 
     return ans;
 }
+
+// postorder tree traversal
+void postOrderRecursive(TreeNode *root)
+{
+    if (!root)
+        return;
+    postOrderRecursive(root->left);
+    postOrderRecursive(root->right);
+    cout << root->data << "  -> ";
+}
+
+vector<int> postOrderIterative(TreeNode *root)
+{
+    vector<int> ans;
+    stack<TreeNode *> s;
+    s.push(root);
+    TreeNode *curr = root;
+    while (!s.empty())
+    {
+        while (curr->left != nullptr)
+        {
+            s.push(curr->left);
+            curr = curr->left;
+        }
+        curr = s.top();
+        s.pop();
+        ans.push_back(curr->data);
+        curr = curr->right;
+    }
+    return ans;
+}

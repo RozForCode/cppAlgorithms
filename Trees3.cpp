@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+#include <stack>
+struct TreeNode
+{
+    int data;
+    TreeNode *right;
+    TreeNode *left;
+    TreeNode(int value)
+    {
+        this->data = value;
+        this->left = nullptr;
+        this->right = nullptr;
+        /*
+        other way to initialize
+        data(value)
+        left(nullptr)
+        right(nullptr)
+        */
+    }
+};
+// Today it's going to be post order and pre order traversal of a binary tree
+// first recursive then iterative
+/*
+The root node of the subtree is visited first.
+Next, the left subtree is recursively traversed.
+Finally, the right subtree is recursively traversed.
+*/
+void preOrderTraversalRecursive(TreeNode *root)
+{
+    if (!root)
+        return;
+    cout << root->data << " ";
+    preOrderTraversalRecursive(root->left);
+    preOrderTraversalRecursive(root->right);
+}
+
+vector<int> preOrderTraversalIterative(TreeNode *root)
+{
+    vector<int> ans;
+    TreeNode *curr = root;
+    stack<TreeNode *> s;
+    while (curr != nullptr || s.empty())
+    {
+        ans.push_back(curr->data);
+        while (curr != nullptr)
+        {
+            s.push(curr->left);
+            curr->left;
+        }
+        curr = s.top();
+        s.pop();
+        ans.push_back(curr->data);
+        curr = curr->right;
+    }
+    return ans;
+}

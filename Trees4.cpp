@@ -34,20 +34,50 @@ vector<int> postOrderIterative(TreeNode *root)
         while (curr != nullptr)
         {
             s.push(curr);
-            s.push(curr);
             curr = curr->left;
         }
         curr = s.top();
-        s.pop();
         if (visited == curr)
         {
             ans.push_back(curr->data);
+            s.pop();
         }
         else
         {
             visited = curr;
         }
         curr = curr->right;
+    }
+    return ans;
+}
+
+vector<int> postOrder(TreeNode *root)
+{
+    vector<int> ans;
+    stack<TreeNode *> s;
+    TreeNode *curr = root;
+    TreeNode *prev = nullptr;
+    while (!s.empty() || curr != nullptr)
+    {
+        if (curr != nullptr)
+        {
+            s.push(curr);
+            curr = curr->left;
+        }
+        else
+        {
+            TreeNode *top = s.top();
+            if (top->right != nullptr && prev != top->right)
+            {
+                curr = top->right;
+            }
+            else
+            {
+                ans.push_back(top->data);
+                prev = top;
+                s.pop();
+            }
+        }
     }
     return ans;
 }

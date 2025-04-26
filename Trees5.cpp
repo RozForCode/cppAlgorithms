@@ -21,3 +21,12 @@ struct TreeNode
     }
 };
 // Level Order Traversal
+
+void levelOrderTraversal(TreeNode *root, int level, vector<vector<int>> &res)
+{
+    if (!root)
+        return;
+    res[level].push_back(root->data);
+    levelOrderTraversal(root->left, level + 1, res);
+    levelOrderTraversal(root->right, level + 1, res);
+}

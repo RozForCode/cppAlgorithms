@@ -37,3 +37,33 @@ void levelOrderTraversal(TreeNode *root, int level, vector<vector<int>> &res)
 }
 
 // level order traversal iterative
+// it will be FIFO so using queue
+#include <queue>
+vector<vector<int>> levelOrder(TreeNode *root)
+{
+    if (!root)
+        return {};
+    queue<TreeNode *> q;
+    vector<vector<int>> ans;
+    q.push(root);
+    int currLevel = 0;
+    TreeNode *curr;
+    while (!q.empty())
+    {
+        int len = q.size();
+        ans.push_back({});
+
+        for (int i = 0; i < len; i++)
+        {
+            curr = q.front();
+            ans[currLevel].push_back(curr->data);
+            q.pop();
+            if (!curr->left)
+                q.push(curr->left);
+            if (!curr->right)
+                q.push(curr->right);
+        }
+        currLevel++;
+    }
+    return ans;
+}

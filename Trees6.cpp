@@ -30,4 +30,7 @@ int height(TreeNode *root)
     return max(lHeight, rHeight) + 1;
 }
 
-// Iterative
+// Iterative - Height or depth of a tree
+// which ds? -> i think stack as we need to access the previously visited node
+// it is queue
+// but can also be done with stack that would be DFS which is more complex with queue it will be BFS

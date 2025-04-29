@@ -34,3 +34,26 @@ int height(TreeNode *root)
 // which ds? -> i think stack as we need to access the previously visited node
 // it is queue
 // but can also be done with stack that would be DFS which is more complex with queue it will be BFS
+
+// DFS - stack - root-left-right (preorder)
+int DFSHeight(TreeNode *root)
+{
+    if (!root)
+        return 0;
+    int maxDepth = 0;
+    int depth = 0;
+    stack<pair<TreeNode *, int>> s;
+    s.push({root, depth});
+    while (!s.empty())
+    {
+        auto [curr, depth] = s.top();
+        maxDepth = max(maxDepth, depth);
+        if (!curr->left)
+            s.push({curr->left, depth + 1});
+        if (!curr->right)
+            s.push({curr->right, depth + 1});
+    }
+    return maxDepth;
+}
+
+// BFS - queue - top->bottom and left ->right (level order traversal)

@@ -2,6 +2,7 @@
 using namespace std;
 #include <vector>
 #include <stack>
+#include <queue>
 struct TreeNode
 {
     int data;
@@ -57,3 +58,27 @@ int DFSHeight(TreeNode *root)
 }
 
 // BFS - queue - top->bottom and left ->right (level order traversal)
+int BFSHeight(TreeNode *root)
+{
+    if (!root)
+        return 0;
+    int height = 0;
+    queue<TreeNode *> q;
+    q.push(root);
+    TreeNode *curr;
+    while (!q.empty())
+    {
+        int levelSize = q.size();
+        height++;
+        for (int i = 0; i < levelSize; i++)
+        {
+            curr = q.front();
+            q.pop();
+            if (!curr->left)
+                q.push(curr->left);
+            if (!curr->right)
+                q.push(curr->right);
+        }
+    }
+    return height;
+}
